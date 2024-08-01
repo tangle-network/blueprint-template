@@ -1,0 +1,37 @@
+[package]
+# name = "project-name"
+name = "{{project-name}}"
+version = "0.1.0"
+edition = "2021"
+description = "{{project-description}}"
+authors = ["{{authors}}"]
+license = "Unlicense"
+homepage = "{{project-homepage}}"
+repository = "https://github.com/{{gh-username}}/{{project-name}}"
+readme = "README.md"
+categories = ["cryptography", "cryptography::cryptocurrencies", "tangle-blueprint"]
+keywords = ["tangle", "blueprint", "avs"]
+rust-version = "1.79"
+
+[dependencies]
+tracing = "0.1"
+async-trait = "0.1"
+
+color-eyre = "0.6"
+tokio = { version = "1.39", default-features = false, features = ["full"] }
+subxt-signer = { version = "0.37", features = ["sr25519", "subxt", "std"] }
+tracing-subscriber = { version = "0.3", features = ["parking_lot", "env-filter"] }
+
+[build-dependencies]
+blueprint-metadata = "0.1"
+
+[dependencies.gadget-sdk]
+version = "0.1"
+default-features = false
+features = ["std", "keystore", "events-watcher", "macros", "tx-tangle"]
+
+[patch.crates-io]
+# This important for now, since we do not have gadget-sdk
+# on crates-io yet.
+gadget-sdk = { git = "https://github.com/webb-tools/gadget.git", branch = "drew/eigen" }
+blueprint-metadata = { git = "https://github.com/webb-tools/gadget.git", branch = "drew/eigen" }

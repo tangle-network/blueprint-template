@@ -21,8 +21,7 @@ prompt = "Your project homepage"
 [placeholders.flakes]
 type = "bool"
 prompt = "Do you want to use Nix & Nix Flakes?"
-choices = ["Yes", "No"]
-default = "No"
+default = false
 
-[conditional.'flakes == "No"']
+[conditional.'!flakes']
 ignore = [ "flake.nix", "flake.lock", ".envrc" ]

@@ -17,3 +17,12 @@ prompt = "A short description"
 [placeholders.project-homepage]
 type = "string"
 prompt = "Your project homepage"
+
+[placeholders.flakes]
+type = "bool"
+prompt = "Do you want to use Nix & Nix Flakes?"
+choices = ["Yes", "No"]
+default = "No"
+
+[conditional.'flakes == "No"']
+ignore = [ "flake.nix", "flake.lock", ".envrc" ]

@@ -1,6 +1,6 @@
-# <h1 align="center"> Tangle Blueprint and EigenLayer 🌐 </h1>
+# <h1 align="center"> Tangle Blueprint 🌐 </h1>
 
-**A simple Hello World Blueprint for Tangle and EigenLayer**
+**A simple Hello World Blueprint for Tangle**
 
 ## 📚 Prerequisites
 

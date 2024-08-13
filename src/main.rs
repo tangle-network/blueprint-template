@@ -4,7 +4,7 @@ use std::convert::Infallible;
 use color_eyre::{eyre::OptionExt, Result};
 use sdk::{
     events_watcher::tangle::TangleEventsWatcher, events_watcher::SubstrateEventWatcher,
-    keystore::backend::GenericKeyStore, keystore::Backend, tangle_subxt::subxt,
+    keystore::backend::GenericKeyStore, keystore::Backend, tangle_subxt::*,
 };
 
 /// Returns "Hello World!" if `who` is `None`, otherwise returns "Hello, <who>!"

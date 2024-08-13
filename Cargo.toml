@@ -18,7 +18,6 @@ async-trait = "0.1"
 
 color-eyre = "0.6"
 tokio = { version = "1.39", default-features = false, features = ["full"] }
-subxt-signer = { version = "0.37", features = ["sr25519", "subxt", "std"] }
 tracing-subscriber = { version = "0.3", features = ["parking_lot", "env-filter"] }
 
 [build-dependencies]
@@ -27,10 +26,4 @@ blueprint-metadata = "0.1"
 [dependencies.gadget-sdk]
 version = "0.1"
 default-features = false
-features = ["std", "keystore", "events-watcher", "macros", "tx-tangle"]
-
-[patch.crates-io]
-# This important for now, since we do not have gadget-sdk
-# on crates-io yet.
-gadget-sdk = { git = "https://github.com/webb-tools/gadget.git", branch = "drew/eigen" }
-blueprint-metadata = { git = "https://github.com/webb-tools/gadget.git", branch = "drew/eigen" }
+features = ["std", "rand", "getrandom"]

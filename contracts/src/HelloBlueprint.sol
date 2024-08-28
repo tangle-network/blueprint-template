@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: UNLICENSE
 pragma solidity >=0.8.13;
 
-import "tnt-core/BlueprintServiceManager.sol";
-
+import "tnt-core/src/BlueprintServiceManager.sol";
 
 /**
  * @title HelloBlueprint
@@ -15,10 +14,12 @@ contract HelloBlueprint is BlueprintServiceManager {
      * @param operator The operator's details.
      * @param _registrationInputs Inputs required for registration.
      */
-    function onRegister(
-        bytes calldata operator,
-        bytes calldata _registrationInputs
-    ) public payable override onlyFromRootChain {
+    function onRegister(bytes calldata operator, bytes calldata _registrationInputs)
+        public
+        payable
+        override
+        onlyFromRootChain
+    {
         // Do something with the operator's details
     }
 
@@ -29,11 +30,12 @@ contract HelloBlueprint is BlueprintServiceManager {
      * @param operators The operators involved in the service.
      * @param _requestInputs Inputs required for the service request.
      */
-    function onRequest(
-        uint64 serviceId,
-        bytes[] calldata operators,
-        bytes calldata _requestInputs
-    ) public payable override onlyFromRootChain {
+    function onRequest(uint64 serviceId, bytes[] calldata operators, bytes calldata _requestInputs)
+        public
+        payable
+        override
+        onlyFromRootChain
+    {
         // Do something with the service request
     }
 
@@ -87,10 +89,7 @@ contract HelloBlueprint is BlueprintServiceManager {
      * @param publicKey The public key to convert.
      * @return address The operator address.
      */
-    function operatorAddressFromPublicKey(bytes calldata publicKey)
-        pure
-        returns (address)
-    {
+    function operatorAddressFromPublicKey(bytes calldata publicKey) internal pure returns (address) {
         return address(uint160(uint256(keccak256(publicKey))));
     }
 }

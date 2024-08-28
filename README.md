@@ -10,18 +10,18 @@ Before you can run this project, you will need to have the following software in
 - [Forge](https://getfoundry.sh)
 - [Tangle](https://github.com/webb-tools/tangle?tab=readme-ov-file#-getting-started-)
 
-You will also need to install `cargo-gadget`:
+You will also need to install `cargo-tangle`:
 
 ```sh
-cargo install cargo-gadget
+cargo install cargo-tangle
 ```
 
 ## 🚀 Getting Started
 
-Once `cargo-gadget` is installed, you can create a new project with the following command:
+Once `cargo-tangle` is installed, you can create a new project with the following command:
 
 ```sh
-cargo gadget create --name <project-name>
+cargo tangle gadget create --name <project-name>
 ```
 
 and follow the instructions to create a new project.
@@ -36,7 +36,7 @@ cargo build
 to build the project, and
 
 ```sh
-cargo gadget deploy
+cargo tangle gadget deploy
 ```
 to deploy the blueprint to the Tangle network.
 

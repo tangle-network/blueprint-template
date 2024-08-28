@@ -31,7 +31,7 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          name = "hello-world-blueprint";
+          name = "blueprint";
           nativeBuildInputs = [
             pkgs.pkg-config
             pkgs.clang

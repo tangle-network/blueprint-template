@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSE
 pragma solidity >=0.8.13;
 
-import "tnt-core/src/BlueprintServiceManager.sol";
+import "core/BlueprintServiceManager.sol";
 
 /**
  * @title HelloBlueprint

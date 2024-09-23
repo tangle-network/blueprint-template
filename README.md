@@ -1,4 +1,4 @@
-# <h1 align="center"> Tangle Blueprint 🌐 </h1>
+# <h1 align="center"> A Tangle Blueprint 🌐 </h1>
 
 **A simple Hello World Blueprint for Tangle**
 
@@ -10,10 +10,20 @@ Before you can run this project, you will need to have the following software in
 - [Forge](https://getfoundry.sh)
 - [Tangle](https://github.com/webb-tools/tangle?tab=readme-ov-file#-getting-started-)
 
-You will also need to install `cargo-tangle`:
+You will also need to install `cargo-tangle`, our CLI tool for creating and deploying Tangle Blueprints:
 
-```sh
-cargo install cargo-tangle
+To install the Tangle CLI, run the following command:
+
+> Supported on Linux, MacOS, and Windows (WSL2)
+
+```bash
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/webb-tools/gadget/releases/download/cargo-tangle/v0.1.1-beta.7/cargo-tangle-installer.sh | sh
+```
+
+Or, if you prefer to install the CLI from source:
+
+```bash
+cargo install cargo-tangle --git https://github.com/webb-tools/gadget --force
 ```
 
 ## 🚀 Getting Started

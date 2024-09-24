@@ -10,7 +10,7 @@ repository = "https://github.com/{{gh-username}}/{{project-name}}"
 readme = "README.md"
 categories = ["cryptography", "cryptography::cryptocurrencies", "tangle-blueprint"]
 keywords = ["tangle", "blueprint", "avs"]
-rust-version = "1.79"
+rust-version = "1.81"
 
 [dependencies]
 tracing = "0.1"

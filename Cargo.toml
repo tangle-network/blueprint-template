@@ -21,7 +21,7 @@ tokio = { version = "1.39", default-features = false, features = ["full"] }
 tracing-subscriber = { version = "0.3", features = ["parking_lot", "env-filter"] }
 
 [dependencies.gadget-sdk]
-version = "0.2"
+version = "0.1.1"
 default-features = false
 features = ["std", "getrandom"]
 

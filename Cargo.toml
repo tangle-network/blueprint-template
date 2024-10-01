@@ -8,22 +8,22 @@ license = "Unlicense"
 homepage = "{{project-homepage}}"
 repository = "https://github.com/{{gh-username}}/{{project-name}}"
 readme = "README.md"
-categories = ["cryptography", "cryptography::cryptocurrencies", "tangle-blueprint"]
+categories = ["cryptography", "cryptography::cryptocurrencies"]
 keywords = ["tangle", "blueprint", "avs"]
 rust-version = "1.81"
 
 [dependencies]
 tracing = "0.1"
 async-trait = "0.1"
-
 color-eyre = "0.6"
+structopt = "0.3.26"
 tokio = { version = "1.39", default-features = false, features = ["full"] }
 tracing-subscriber = { version = "0.3", features = ["parking_lot", "env-filter"] }
 
-[build-dependencies]
-blueprint-metadata = "0.1"
-
 [dependencies.gadget-sdk]
-version = "0.1"
+version = "0.1.1"
 default-features = false
-features = ["std", "rand", "getrandom"]
+features = ["std", "getrandom"]
+
+[build-dependencies]
+blueprint-metadata = "0.1.2"

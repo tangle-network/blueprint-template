@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "name": "project-name",
+    "name": "{{project-name}}",
     "description": "{{project-description}}",
     "author": "{{authors}}",
     "category": null,

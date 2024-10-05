@@ -1,6 +1,6 @@
 use color_eyre::Result;
 use gadget_sdk as sdk;
-use {{project-name}} as blueprint;
+use {{project-name | snake_case}} as blueprint;
 use sdk::{
     config::ContextConfig, events_watcher::substrate::SubstrateEventWatcher,
     events_watcher::tangle::TangleEventsWatcher, tangle_subxt::*,

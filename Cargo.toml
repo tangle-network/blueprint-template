@@ -27,3 +27,10 @@ features = ["std", "getrandom"]
 
 [build-dependencies]
 blueprint-metadata = "0.1.2"
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "{{project-name}}"
+path = "src/main.rs"

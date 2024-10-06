@@ -25,3 +25,14 @@ default = false
 
 [conditional.'!flakes']
 ignore = [ "flake.nix", "flake.lock", ".envrc" ]
+
+[placeholders.docker]
+type = "bool"
+prompt = "Do you want to generate a Dockerfile for your gadget?"
+default = true
+
+[conditional.'!docker']
+ignore = [ "Dockerfile", "docker/" ]
+
+[conditional.'docker'.placeholders]
+base-image = { type = "string", prompt = "What base image should be used?", default = "rustlang/rust:nightly" }

@@ -18,9 +18,9 @@ jobs:
         with:
           name: ${{ env.PROJECT_NAME }}
           arguments: >
-            --define gh-username="webb-tools"
+            --define gh-username="tangle-network"
             --define project-description="An example blueprint"
-            --define project-homepage="https://webb.tools"
+            --define project-homepage="https://tangle.tools"
             --define flakes=true
             --define docker=true
             --define base-image="rustlang/rust:nightly"

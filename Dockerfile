@@ -15,8 +15,6 @@ RUN cargo build --release
 FROM debian:bookworm-slim AS runtime
 WORKDIR /app
 COPY --from=chef /app/target/release/{{project-name}} /usr/local/bin
-COPY --from=chef /app/docker/entrypoint.sh /usr/local/bin
-RUN chmod +x /usr/local/bin/entrypoint.sh
 
 LABEL org.opencontainers.image.authors="{{authors}}"
 LABEL org.opencontainers.image.description="{{project-description}}"
@@ -28,4 +26,4 @@ ENV BIND_PORT=9632
 ENV BLUEPRINT_ID=0
 ENV SERVICE_ID=0
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/{{project-name}}", "run"]

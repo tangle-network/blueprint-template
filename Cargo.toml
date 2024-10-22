@@ -34,3 +34,6 @@ path = "src/lib.rs"
 [[bin]]
 name = "{{project-name}}"
 path = "src/main.rs"
+
+[package.metadata.blueprint]
+manager = { evm = "HelloBlueprint" }

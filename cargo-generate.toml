@@ -1,6 +1,6 @@
 [template]
 cargo_generate_version = ">=0.17.4"
-ignore = [".git", "blueprint.json", "blueprint.lock"]
+ignore = [".git", "blueprint.json", "blueprint.lock", ".github/workflows/verify-template.yml"]
 
 
 [placeholders.gh-username]

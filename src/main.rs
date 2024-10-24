@@ -2,11 +2,11 @@ use color_eyre::Result;
 use {{project-name | snake_case}} as blueprint;
 use gadget_sdk as sdk;
 use gadget_sdk::job_runner::MultiJobRunner;
-use sdk::{config::ContextConfig, tangle_subxt::*};
-use structopt::StructOpt;
+use sdk::tangle_subxt::*;
 
 #[sdk::main(env)]
 async fn main() -> Result<()> {
+    init_logger();
     let signer = env.first_sr25519_signer()?;
     let client = subxt::OnlineClient::from_url(&env.rpc_endpoint).await?;
 

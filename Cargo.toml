@@ -20,13 +20,17 @@ structopt = "0.3.26"
 tokio = { version = "1.39", default-features = false, features = ["full"] }
 tracing-subscriber = { version = "0.3", features = ["parking_lot", "env-filter"] }
 
+[features]
+default = ["std"]
+std = ["gadget-sdk/std"]
+
 [dependencies.gadget-sdk]
-version = "0.1.1"
+version = "0.2.2"
 default-features = false
-features = ["std", "getrandom"]
+features = ["getrandom"]
 
 [build-dependencies]
-blueprint-metadata = "0.1.2"
+blueprint-metadata = "0.1.5"
 
 [lib]
 path = "src/lib.rs"
@@ -37,3 +41,12 @@ path = "src/main.rs"
 
 [package.metadata.blueprint]
 manager = { evm = "HelloBlueprint" }
+
+[[package.metadata.gadget.Native.sources]]
+owner = "{{gh-username}}"
+repo = "{{project-name}}"
+tag = "0.1.0"
+binaries = [
+    { arch = "Amd64", os = "Linux", name = "amd64-linux-{{project-name}}-gadget" },
+    { arch = "Arm64", os = "Linux", name = "arm64-linux-{{project-name}}-gadget" },
+]

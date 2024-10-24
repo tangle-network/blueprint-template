@@ -1,20 +1,12 @@
 use color_eyre::Result;
-use gadget_sdk as sdk;
 use {{project-name | snake_case}} as blueprint;
-use sdk::{
-    config::ContextConfig, events_watcher::substrate::SubstrateEventWatcher,
-    events_watcher::tangle::TangleEventsWatcher, tangle_subxt::*,
-};
-use structopt::StructOpt;
+use gadget_sdk as sdk;
+use gadget_sdk::job_runner::MultiJobRunner;
+use sdk::tangle_subxt::*;
 
-#[tokio::main]
+#[sdk::main(env)]
 async fn main() -> Result<()> {
     init_logger();
-    color_eyre::install()?;
-
-    // Initialize the environment
-    let config = ContextConfig::from_args();
-    let env = sdk::config::load(config)?;
     let signer = env.first_sr25519_signer()?;
     let client = subxt::OnlineClient::from_url(&env.rpc_endpoint).await?;
 
@@ -24,20 +16,24 @@ async fn main() -> Result<()> {
 
     let service_id = env.service_id.expect("should exist");
 
+    // Create your service context
+    // Here you can pass any configuration or context that your service needs.
+    let context = blueprint::ServiceContext {
+        config: env.clone(),
+    };
+
     // Create the event handler from the job
-    let say_hello_job = blueprint::SayHelloEventHandler { service_id, signer };
+    let say_hello_job = blueprint::SayHelloEventHandler {
+        service_id,
+        client,
+        signer,
+        context,
+    };
 
     tracing::info!("Starting the event watcher ...");
+    MultiJobRunner::new(env).job(say_hello_job).run().await?;
 
-    SubstrateEventWatcher::run(
-        &TangleEventsWatcher {
-            span: env.span.clone(),
-        },
-        client,
-        // Add more handler here if we have more functions.
-        vec![Box::new(say_hello_job)],
-    )
-    .await?;
+    tracing::info!("Exiting...");
     Ok(())
 }
 

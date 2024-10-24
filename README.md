@@ -10,7 +10,8 @@ Before you can run this project, you will need to have the following software in
 - [Forge](https://getfoundry.sh)
 - [Tangle](https://github.com/tangle-network/tangle?tab=readme-ov-file#-getting-started-)
 
-You will also need to install `cargo-tangle`, our CLI tool for creating and deploying Tangle Blueprints:
+You will also need to install [cargo-tangle](https://crates.io/crates/cargo-tangle), our CLI tool for creating and
+deploying Tangle Blueprints:
 
 To install the Tangle CLI, run the following command:
 
@@ -31,7 +32,7 @@ cargo install cargo-tangle --force # to get the latest version.
 Once `cargo-tangle` is installed, you can create a new project with the following command:
 
 ```sh
-cargo tangle gadget create --name <project-name>
+cargo tangle blueprint create --name <project-name>
 ```
 
 and follow the instructions to create a new project.
@@ -43,18 +44,24 @@ Once you have created a new project, you can run the following command to start 
 ```sh
 cargo build
 ```
+
 to build the project, and
 
 ```sh
-cargo tangle gadget deploy
+cargo tangle blueprint deploy
 ```
+
 to deploy the blueprint to the Tangle network.
 
 ## 📚 Overview
 
-This project is about creating a simple Hello World Blueprint for Tangle and EigenLayer. Blueprints are specifications for Actively Validated Services (AVS) on the Tangle Network. An AVS is an off-chain service that runs arbitrary computations for a user-specified period of time.
+This project is about creating a simple Hello World Blueprint for Tangle and EigenLayer.
+Blueprints are specifications for <abbr title="Actively Validated Services">AVS</abbr>s on the Tangle Network. An AVS is
+an off-chain service that runs arbitrary computations for a user-specified period of time.
 
-Blueprints provide a useful abstraction, allowing developers to create reusable service infrastructures as if they were smart contracts. This enables developers to monetize their work and align long-term incentives with the success of their creations, benefiting proportionally to their Blueprint's usage.
+Blueprints provide a useful abstraction, allowing developers to create reusable service infrastructures as if they were
+smart contracts. This enables developers to monetize their work and align long-term incentives with the success of their
+creations, benefiting proportionally to their Blueprint's usage.
 
 For more details, please refer to the [project documentation](https://docs.tangle.tools/developers/blueprints).
 

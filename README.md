@@ -58,10 +58,23 @@ Blueprints provide a useful abstraction, allowing developers to create reusable 
 
 For more details, please refer to the [project documentation](https://docs.tangle.tools/developers/blueprints).
 
-## 📬 Feedback
-
-If you have any feedback or issues, please feel free to open an issue on our [GitHub repository](https://github.com/tangle-network/blueprint-template/issues).
-
 ## 📜 License
 
-This project is licensed under the unlicense License. See the [LICENSE](./LICENSE) file for more details.
+Licensed under either of
+
+* Apache License, Version 2.0
+  ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
+* MIT license
+  ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+
+at your option.
+
+## 📬 Feedback and Contributions
+
+We welcome feedback and contributions to improve this blueprint.
+Please open an issue or submit a pull request on
+our [GitHub repository](https://github.com/tangle-network/blueprint-template/issues).
+
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in the work by you, as defined in the Apache-2.0 license, shall be
+dual licensed as above, without any additional terms or conditions.

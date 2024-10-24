@@ -31,7 +31,7 @@ async fn main() -> Result<()> {
     };
 
     tracing::info!("Starting the event watcher ...");
-    MultiJobRunner::new(&env).job(say_hello_job).run().await?;
+    MultiJobRunner::new(env).job(say_hello_job).run().await?;
 
     tracing::info!("Exiting...");
     Ok(())

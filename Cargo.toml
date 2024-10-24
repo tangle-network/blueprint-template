@@ -20,10 +20,14 @@ structopt = "0.3.26"
 tokio = { version = "1.39", default-features = false, features = ["full"] }
 tracing-subscriber = { version = "0.3", features = ["parking_lot", "env-filter"] }
 
+[features]
+default = ["std"]
+std = ["gadget-sdk/std"]
+
 [dependencies.gadget-sdk]
 version = "0.2.2"
 default-features = false
-features = ["std", "getrandom"]
+features = ["getrandom"]
 
 [build-dependencies]
 blueprint-metadata = "0.1.5"

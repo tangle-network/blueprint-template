@@ -35,4 +35,4 @@ default = true
 ignore = ["Dockerfile", "docker/"]
 
 [conditional.'docker'.placeholders]
-base-image = { type = "string", prompt = "What base image should be used?", default = "rustlang/rust:nightly-slim" }
+base-image = { type = "string", prompt = "What base image should be used?", default = "rustlang/rust:nightly" }

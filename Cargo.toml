@@ -17,7 +17,7 @@ tracing = "0.1"
 async-trait = "0.1"
 color-eyre = "0.6"
 structopt = "0.3.26"
-tokio = { version = "1.41", default-features = false, features = ["full"] }
+tokio = { version = "^1", default-features = false, features = ["full"] }
 tracing-subscriber = { version = "0.3", features = ["parking_lot", "env-filter"] }
 
 [features]
@@ -25,12 +25,12 @@ default = ["std"]
 std = ["gadget-sdk/std"]
 
 [dependencies.gadget-sdk]
-version = "0.2.2"
+version = "0.3.0"
 default-features = false
 features = ["getrandom"]
 
 [build-dependencies]
-blueprint-metadata = "0.1.5"
+blueprint-metadata = "0.1.6"
 
 [lib]
 path = "src/lib.rs"

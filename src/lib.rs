@@ -19,7 +19,7 @@ pub struct ServiceContext {
     params(who),
     result(_),
     event_listener(
-        listener = TangleEventListener::<JobCalled, ServiceContext>,
+        listener = TangleEventListener::<ServiceContext, JobCalled>,
         pre_processor = services_pre_processor,
         post_processor = services_post_processor,
     ),

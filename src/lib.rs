@@ -1,12 +1,12 @@
-use gadget_sdk as sdk;
-use gadget_sdk::tangle_subxt::tangle_testnet_runtime::api;
-use std::convert::Infallible;
-
 use api::services::events::JobCalled;
+use gadget_sdk as sdk;
 use sdk::event_listener::tangle::{
     jobs::{services_post_processor, services_pre_processor},
     TangleEventListener,
 };
+use sdk::tangle_subxt::tangle_testnet_runtime::api;
+
+use std::convert::Infallible;
 
 #[derive(Clone)]
 pub struct ServiceContext {
@@ -39,7 +39,7 @@ mod tests {
     fn it_works() {
         let config = sdk::config::StdGadgetConfiguration::default();
         let context = ServiceContext { config };
-        let result = say_hello(None, context).unwrap();
+        let result = say_hello(None, context.clone()).unwrap();
         assert_eq!(result, "Hello World!");
         let result = say_hello(Some("Alice".to_string()), context).unwrap();
         assert_eq!(result, "Hello, Alice!");

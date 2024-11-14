@@ -1,8 +1,8 @@
 use color_eyre::Result;
 use {{project-name | snake_case}} as blueprint;
 use gadget_sdk as sdk;
-use gadget_sdk::runners::tangle::TangleConfig;
-use gadget_sdk::runners::BlueprintRunner;
+use sdk::runners::tangle::TangleConfig;
+use sdk::runners::BlueprintRunner;
 
 #[sdk::main(env)]
 async fn main() -> Result<()> {

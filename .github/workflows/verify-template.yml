@@ -24,6 +24,9 @@ jobs:
             --define flakes=true
             --define docker=true
             --define base-image="rustlang/rust:nightly"
+            --define ci=true
+            --define rust-ci=true
+            --define release-ci=true
       - uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable

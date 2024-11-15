@@ -32,4 +32,7 @@ sources = [
         { arch = "Arm64", os = "Linux", name = "arm64-linux-{{project-name}}-gadget" }
     ] },
     {%- endif %}
+    {% if container -%}
+    { type = "Container", registry = "{{container-registry}}", image = "{{gh-username}}/{{project-name}}", tag = "0.1.0" },
+    {%- endif %}
 ]

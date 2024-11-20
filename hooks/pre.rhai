@@ -34,7 +34,7 @@ if !check_bool("flakes") {
 }
 
 if !variable::is_set("docker") {
-    let docker = variable::prompt("Do you want to generate a Dockerfile for your gadget?", true);
+    let docker = variable::prompt("Do you want to deploy your gadget with Docker?", true);
     variable::set("docker", docker);
 }
 
@@ -42,6 +42,11 @@ if check_bool("docker") {
     if !variable::is_set("base-image") {
         let base_image = variable::prompt("What base image should be used?", "rustlang/rust:nightly");
         variable::set("base-image", base_image);
+    }
+
+    if !variable::is_set("docker-registry") {
+        let registry = variable::prompt("What registry will you be deploying to?", "docker.io");
+        variable::set("docker-registry", registry);
     }
 } else {
     file::delete("./Dockerfile");
@@ -70,6 +75,10 @@ if !check_bool("rust-ci") {
 
 if !check_bool("release-ci") {
     file::delete("./.github/workflows/release.yml");
+}
+
+if variable::is_set("docker-registry") || check_bool("release-ci") {
+    print("\x1b[1m(\x1b[31m!!!\x1b[39m) A native and/or Docker source has been configured. Be sure to check Cargo.toml to ensure they are correct.")
 }
 
 file::delete("./hooks");

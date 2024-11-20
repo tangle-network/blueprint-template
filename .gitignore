@@ -32,3 +32,6 @@ docs/
 # Generated blueprint files
 blueprint.json
 blueprint.lock
+
+# Soldeer dependencies
+dependencies/

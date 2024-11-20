@@ -10,9 +10,3 @@ updates:
     schedule:
       interval: "daily"
     open-pull-requests-limit: 5
-  - package-ecosystem: "gitsubmodule"
-    directory: "/"
-    allow:
-      - dependency-name: "contracts/lib/tnt-core"
-    schedule:
-      interval: "daily"

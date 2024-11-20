@@ -41,12 +41,3 @@ path = "src/main.rs"
 
 [package.metadata.blueprint]
 manager = { Evm = "HelloBlueprint" }
-
-[[package.metadata.gadget.Native.sources]]
-owner = "{{gh-username}}"
-repo = "{{project-name}}"
-tag = "0.1.0"
-binaries = [
-    { arch = "Amd64", os = "Linux", name = "amd64-linux-{{project-name}}-gadget" },
-    { arch = "Arm64", os = "Linux", name = "arm64-linux-{{project-name}}-gadget" },
-]

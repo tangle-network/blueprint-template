@@ -14,6 +14,6 @@ remappings_location = "txt"
 remappings_version = false
 
 [dependencies]
-tnt-core = { version = "0.1.0", git = "https://github.com/tangle-network/tnt-core.git", branch = "main" }
+tnt-core = "0.1.0"
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

@@ -14,6 +14,9 @@ jobs:
       PROJECT_NAME: blueprint-template
     steps:
       - uses: actions/checkout@v4
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
       - uses: JohnPeel/cargo-generate-action@main
         with:
           name: ${{ env.PROJECT_NAME }}

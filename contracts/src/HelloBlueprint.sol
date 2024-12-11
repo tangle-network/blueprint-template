@@ -15,7 +15,10 @@ contract HelloBlueprint is BlueprintServiceManagerBase {
      * @param operator The operator's details.
      * @param _registrationInputs Inputs required for registration.
      */
-    function onRegister(bytes calldata operator, bytes calldata _registrationInputs)
+    function onRegister(
+        ServiceOperators.OperatorPreferences calldata operator,
+        bytes calldata _registrationInputs
+    )
         public
         payable
         override
@@ -27,11 +30,9 @@ contract HelloBlueprint is BlueprintServiceManagerBase {
     /**
      * @dev Hook for service instance requests. Called when a user requests a service
      * instance from the blueprint.
-     * @param serviceId The ID of the requested service.
-     * @param operators The operators involved in the service.
-     * @param _requestInputs Inputs required for the service request.
+     * @param params The parameters for the service request.
      */
-    function onRequest(uint64 serviceId, bytes[] calldata operators, bytes calldata _requestInputs)
+    function onRequest(ServiceOperators.RequestParams calldata params)
         public
         payable
         override
@@ -46,7 +47,7 @@ contract HelloBlueprint is BlueprintServiceManagerBase {
      * @param serviceId The ID of the service related to the job.
      * @param job The job identifier.
      * @param _jobCallId The unique ID for the job call.
-     * @param participant The participant (operator) sending the result.
+     * @param operator The operator sending the result in bytes format.
      * @param _inputs Inputs used for the job execution.
      * @param _outputs Outputs resulting from the job execution.
      */
@@ -54,7 +55,7 @@ contract HelloBlueprint is BlueprintServiceManagerBase {
         uint64 serviceId,
         uint8 job,
         uint64 _jobCallId,
-        bytes calldata participant,
+        ServiceOperators.OperatorPreferences calldata operator,
         bytes calldata _inputs,
         bytes calldata _outputs
     ) public payable virtual override onlyFromRootChain {

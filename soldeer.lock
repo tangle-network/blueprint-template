@@ -1,6 +1,5 @@
 [[dependencies]]
 name = "tnt-core"
 version = "0.1.0"
-source = "https://soldeer-revisions.s3.amazonaws.com/tnt-core/0_1_0_10-12-2024_20:51:20_tnt-core.zip"
-checksum = "628b2475c4d629c1cb2578b41b2e10daa3711d711aa5f5b0dd6153959808620f"
-integrity = "07e49929d89cefe2f075a4781a5e92d3f276b0de29c325c0cae9cddbc591e69e"
+git = "https://github.com/tangle-network/tnt-core.git"
+rev = "7ce2100bdb57472524a130488dace41a56cf3515"

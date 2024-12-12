@@ -27,6 +27,8 @@ features = ["getrandom"]
 
 [build-dependencies]
 blueprint-metadata = "0.1.6"
+# TODO: Replace with versioned release
+blueprint-build-utils = { git = "https://github.com/tangle-network/gadget" }
 
 [features]
 default = ["std"]

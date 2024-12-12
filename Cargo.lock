@@ -1722,6 +1722,11 @@ dependencies = [
 ]
 
 [[package]]
+name = "blueprint-build-utils"
+version = "0.1.0"
+source = "git+https://github.com/tangle-network/gadget#12da32de5136a2d22db0bc1581707a3e3bfb44f2"
+
+[[package]]
 name = "blueprint-metadata"
 version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1796,6 +1801,21 @@ dependencies = [
  "parity-scale-codec",
  "scale-info",
  "serde",
+]
+
+[[package]]
+name = "bp-test"
+version = "0.1.0"
+dependencies = [
+ "async-trait",
+ "blueprint-build-utils",
+ "blueprint-metadata",
+ "color-eyre",
+ "gadget-sdk",
+ "structopt",
+ "tokio",
+ "tracing",
+ "tracing-subscriber 0.3.18",
 ]
 
 [[package]]
@@ -4367,20 +4387,6 @@ checksum = "6ea1015b5a70616b688dc230cfe50c8af89d972cb132d5a622814d29773b10b9"
 dependencies = [
  "rand",
  "rand_core 0.6.4",
-]
-
-[[package]]
-name = "gg"
-version = "0.1.0"
-dependencies = [
- "async-trait",
- "blueprint-metadata",
- "color-eyre",
- "gadget-sdk",
- "structopt",
- "tokio",
- "tracing",
- "tracing-subscriber 0.3.18",
 ]
 
 [[package]]

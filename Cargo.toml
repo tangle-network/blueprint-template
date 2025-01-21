@@ -17,8 +17,6 @@ blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", br
 
 [build-dependencies]
 blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = ["build"] }
-# TODO: Replace with versioned release
-blueprint-build-utils = { git = "https://github.com/tangle-network/gadget" }
 
 [dev-dependencies]
 blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = ["testing", "tangle"] }

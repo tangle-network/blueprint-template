@@ -1,8 +1,8 @@
-use {{project-name | snake_case}} as blueprint;
 use blueprint_sdk::logging;
+use blueprint_sdk::macros as gadget_macros;
 use blueprint_sdk::runners::core::runner::BlueprintRunner;
 use blueprint_sdk::runners::tangle::tangle::TangleConfig;
-use blueprint_sdk::macros as gadget_macros;
+use {{project-name | snake_case}} as blueprint;
 
 #[blueprint_sdk::main(env)]
 async fn main() {
@@ -26,3 +26,4 @@ async fn main() {
     logging::info!("Exiting...");
     Ok(())
 }
+

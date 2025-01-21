@@ -1,10 +1,12 @@
 use api::services::events::JobCalled;
 use blueprint_sdk::config::GadgetConfiguration;
-use blueprint_sdk::event_listeners::tangle::services::{services_post_processor, services_pre_processor};
 use blueprint_sdk::event_listeners::tangle::events::TangleEventListener;
-use blueprint_sdk::tangle_subxt::tangle_testnet_runtime::api;
-use blueprint_sdk::macros::contexts::{ServicesContext, TangleClientContext};
+use blueprint_sdk::event_listeners::tangle::services::{
+    services_post_processor, services_pre_processor,
+};
 use blueprint_sdk::macros as gadget_macros;
+use blueprint_sdk::macros::contexts::{ServicesContext, TangleClientContext};
+use blueprint_sdk::tangle_subxt::tangle_testnet_runtime::api;
 
 use std::convert::Infallible;
 

@@ -13,52 +13,57 @@ contract HelloBlueprint is BlueprintServiceManagerBase {
      * @dev Hook for service operator registration. Called when a service operator
      * attempts to register with the blueprint.
      * @param operator The operator's details.
-     * @param _registrationInputs Inputs required for registration.
+     * @param registrationInputs Inputs required for registration in bytes format.
      */
     function onRegister(
         ServiceOperators.OperatorPreferences calldata operator,
-        bytes calldata _registrationInputs
+        bytes calldata registrationInputs
     )
-        public
-        payable
-        override
-        onlyFromRootChain
+    external
+    payable
+    virtual
+    override
+    onlyFromMaster
     {
         // Do something with the operator's details
     }
 
     /**
-     * @dev Hook for service instance requests. Called when a user requests a service
-     * instance from the blueprint.
-     * @param params The parameters for the service request.
+     *  @dev Hook for service instance requests. Called when a user requests a service
+     *  instance from the blueprint but this does not mean the service is initiated yet.
+     *  To get notified when the service is initiated, implement the `onServiceInitialized` hook.
+     *
+     *  @param params The parameters for the service request.
      */
-    function onRequest(ServiceOperators.RequestParams calldata params)
-        public
-        payable
-        override
-        onlyFromRootChain
+    function onRequest(ServiceOperators.RequestParams calldata params) external payable virtual override onlyFromMaster
     {
         // Do something with the service request
     }
 
     /**
-     * @dev Hook for handling job call results. Called when operators send the result
+     * @dev Hook for handling job result. Called when operators send the result
      * of a job execution.
      * @param serviceId The ID of the service related to the job.
      * @param job The job identifier.
-     * @param _jobCallId The unique ID for the job call.
+     * @param jobCallId The unique ID for the job call.
      * @param operator The operator sending the result in bytes format.
-     * @param _inputs Inputs used for the job execution.
-     * @param _outputs Outputs resulting from the job execution.
+     * @param inputs Inputs used for the job execution in bytes format.
+     * @param outputs Outputs resulting from the job execution in bytes format.
      */
     function onJobResult(
         uint64 serviceId,
         uint8 job,
-        uint64 _jobCallId,
+        uint64 jobCallId,
         ServiceOperators.OperatorPreferences calldata operator,
-        bytes calldata _inputs,
-        bytes calldata _outputs
-    ) public payable virtual override onlyFromRootChain {
+        bytes calldata inputs,
+        bytes calldata outputs
+    )
+    external
+    payable
+    virtual
+    override
+    onlyFromMaster
+    {
         // Do something with the job call result
     }
 

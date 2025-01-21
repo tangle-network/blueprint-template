@@ -1,20 +1,23 @@
 use api::services::events::JobCalled;
-use gadget_sdk as sdk;
-use sdk::event_listener::tangle::{
-    jobs::{services_post_processor, services_pre_processor},
-    TangleEventListener,
-};
-use sdk::tangle_subxt::tangle_testnet_runtime::api;
+use blueprint_sdk::config::GadgetConfiguration;
+use blueprint_sdk::event_listeners::tangle::services::{services_post_processor, services_pre_processor};
+use blueprint_sdk::event_listeners::tangle::events::TangleEventListener;
+use blueprint_sdk::tangle_subxt::tangle_testnet_runtime::api;
+use blueprint_sdk::macros::contexts::{ServicesContext, TangleClientContext};
+use blueprint_sdk::macros as gadget_macros;
 
 use std::convert::Infallible;
 
-#[derive(Clone)]
+#[derive(Clone, TangleClientContext, ServicesContext)]
 pub struct ServiceContext {
-    pub config: sdk::config::StdGadgetConfiguration,
+    #[config]
+    pub config: GadgetConfiguration,
+    #[call_id]
+    pub call_id: Option<u64>,
 }
 
 /// Returns "Hello World!" if `who` is `None`, otherwise returns "Hello, {who}!"
-#[sdk::job(
+#[blueprint_sdk::job(
     id = 0,
     params(who),
     result(_),

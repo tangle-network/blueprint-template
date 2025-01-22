@@ -1,5 +1,4 @@
 use blueprint_sdk::logging;
-use blueprint_sdk::macros as gadget_macros;
 use blueprint_sdk::runners::core::runner::BlueprintRunner;
 use blueprint_sdk::runners::tangle::tangle::TangleConfig;
 use {{project-name | snake_case}} as blueprint;

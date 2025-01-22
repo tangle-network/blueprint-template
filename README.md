@@ -10,7 +10,7 @@ Blueprints provide a useful abstraction, allowing developers to create reusable 
 smart contracts. This enables developers to monetize their work and align long-term incentives with the success of their
 creations, benefiting proportionally to their Blueprint's usage.
 
-For more details, please refer to the [project documentation](https://docs.tangle.tools/developers/blueprints).
+For more details, please refer to the [project documentation](https://docs.tangle.tools/developers/blueprints/introduction).
 
 ## 🚀 Features
 

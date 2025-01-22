@@ -20,6 +20,7 @@ blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", br
 
 [dev-dependencies]
 blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = ["testing", "tangle"] }
+color-eyre = "0.6.3"
 
 [lib]
 path = "src/lib.rs"

@@ -42,8 +42,8 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let config = sdk::config::StdGadgetConfiguration::default();
-        let context = ServiceContext { config };
+        let config = GadgetConfiguration::default();
+        let context = ServiceContext { config, call_id: None };
         let result = say_hello(None, context.clone()).unwrap();
         assert_eq!(result, "Hello World!");
         let result = say_hello(Some("Alice".to_string()), context).unwrap();

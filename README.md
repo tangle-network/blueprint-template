@@ -1,14 +1,29 @@
-# <h1 align="center"> A Tangle Blueprint 🌐 </h1>
+# <h1 align="center">Hello World Tangle Blueprint 🌐</h1>
 
-**A simple Hello World Blueprint for Tangle**
+## 📚 Overview
 
-## 📚 Prerequisites
+This Tangle Blueprint provides a simple Hello World job.
+Blueprints are specifications for <abbr title="Actively Validated Services">AVS</abbr>s on the Tangle Network. An AVS is
+an off-chain service that runs arbitrary computations for a user-specified period of time.
+
+Blueprints provide a useful abstraction, allowing developers to create reusable service infrastructures as if they were
+smart contracts. This enables developers to monetize their work and align long-term incentives with the success of their
+creations, benefiting proportionally to their Blueprint's usage.
+
+For more details, please refer to the [project documentation](https://docs.tangle.tools/developers/blueprints/introduction).
+
+## 🚀 Features
+
+- Custom greeting messages
+- Default "Hello World!" messages
+- ...
+
+## 📋 Prerequisites
 
 Before you can run this project, you will need to have the following software installed on your machine:
 
 - [Rust](https://www.rust-lang.org/tools/install)
 - [Forge](https://getfoundry.sh)
-- [Tangle](https://github.com/tangle-network/tangle?tab=readme-ov-file#-getting-started-)
 
 You will also need to install [cargo-tangle](https://crates.io/crates/cargo-tangle), our CLI tool for creating and
 deploying Tangle Blueprints:
@@ -27,7 +42,7 @@ Or, if you prefer to install the CLI from crates.io:
 cargo install cargo-tangle --force # to get the latest version.
 ```
 
-## 🚀 Getting Started
+## ⭐ Getting Started
 
 Once `cargo-tangle` is installed, you can create a new project with the following command:
 
@@ -53,18 +68,6 @@ cargo tangle blueprint deploy
 
 to deploy the blueprint to the Tangle network.
 
-## 📚 Overview
-
-This project is about creating a simple Hello World Blueprint for Tangle and EigenLayer.
-Blueprints are specifications for <abbr title="Actively Validated Services">AVS</abbr>s on the Tangle Network. An AVS is
-an off-chain service that runs arbitrary computations for a user-specified period of time.
-
-Blueprints provide a useful abstraction, allowing developers to create reusable service infrastructures as if they were
-smart contracts. This enables developers to monetize their work and align long-term incentives with the success of their
-creations, benefiting proportionally to their Blueprint's usage.
-
-For more details, please refer to the [project documentation](https://docs.tangle.tools/developers/blueprints).
-
 ## 📜 License
 
 Licensed under either of
@@ -79,8 +82,8 @@ at your option.
 ## 📬 Feedback and Contributions
 
 We welcome feedback and contributions to improve this blueprint.
-Please open an issue or submit a pull request on
-our [GitHub repository](https://github.com/tangle-network/blueprint-template/issues).
+Please open an issue or submit a pull request on our GitHub repository.
+Please let us know if you fork this blueprint and extend it too!
 
 Unless you explicitly state otherwise, any contribution intentionally submitted
 for inclusion in the work by you, as defined in the Apache-2.0 license, shall be

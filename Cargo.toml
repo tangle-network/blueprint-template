@@ -13,13 +13,13 @@ keywords = ["tangle", "blueprint", "avs"]
 rust-version = "1.81"
 
 [dependencies]
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", features = ["tangle", "macros"] }
+blueprint-sdk = { git = "https://github.com/tangle-network/gadget", features = ["tangle", "macros"] }
 
 [build-dependencies]
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", features = ["build"] }
+blueprint-sdk = { git = "https://github.com/tangle-network/gadget", features = ["build"] }
 
 [dev-dependencies]
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", features = ["testing", "tangle"] }
+blueprint-sdk = { git = "https://github.com/tangle-network/gadget", features = ["testing", "tangle"] }
 color-eyre = "0.6.3"
 
 [lib]

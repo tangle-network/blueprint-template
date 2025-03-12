@@ -1,0 +1,26 @@
+[package]
+name = "{{project-name}}-blueprint-bin"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+{{project-name}}-blueprint-lib.workspace = true
+
+blueprint-sdk = { workspace = true, features = ["std"] }
+tokio = { workspace = true, features = ["rt-multi-thread"] }
+tracing-subscriber = { workspace = true, features = ["env-filter"] }
+tracing = { workspace = true }
+tower.workspace = true
+
+[build-dependencies]
+{{project-name}}-blueprint-lib.workspace = true
+blueprint-sdk = { workspace = true, features = ["macros", "build"] }
+
+[[package.metadata.gadget.Native.sources]]
+owner = "{{gh-username}}"
+repo = "{{project-name}}"
+tag = "0.1.0"
+binaries = [
+    { arch = "Amd64", os = "Linux", name = "amd64-linux-{{project-name}}-gadget" },
+    { arch = "Arm64", os = "Linux", name = "arm64-linux-{{project-name}}-gadget" },
+]

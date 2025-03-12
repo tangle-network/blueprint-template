@@ -33,13 +33,7 @@ To install the Tangle CLI, run the following command:
 > Supported on Linux, MacOS, and Windows (WSL2)
 
 ```bash
-curl --proto '=https' --tlsv1.2 -LsSf https://github.com/tangle-network/gadget/releases/download/cargo-tangle-v0.1.2/cargo-tangle-installer.sh | sh
-```
-
-Or, if you prefer to install the CLI from crates.io:
-
-```bash
-cargo install cargo-tangle --force # to get the latest version.
+cargo install cargo-tangle --git https://github.com/tangle-network/blueprint
 ```
 
 ## ⭐ Getting Started

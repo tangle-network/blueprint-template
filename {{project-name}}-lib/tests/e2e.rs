@@ -30,7 +30,7 @@ async fn test_blueprint() -> color_eyre::Result<()> {
     test_env.start().await?;
 
     // Submit the job call
-    let job_inputs = vec![to_field("Alice").unwrap()];
+    let job_inputs = vec![to_field(Some("Alice")).unwrap()];
     let job = harness.submit_job(service_id, 0, job_inputs).await?;
 
     let results = harness.wait_for_job_execution(service_id, job).await?;

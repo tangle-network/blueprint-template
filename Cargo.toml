@@ -1,8 +1,11 @@
-[package]
-name = "{{project-name}}"
+[workspace]
+resolver = "2"
+members = ["{{project-name}}-lib", "{{project-name}}-bin"]
+
+[workspace.package]
 version = "0.1.0"
-edition = "2021"
 description = "{{project-description}}"
+edition = "2024"
 authors = ["{{authors}}"]
 license = "MIT OR Apache-2.0"
 homepage = "{{project-homepage}}"
@@ -10,33 +13,13 @@ repository = "https://github.com/{{gh-username}}/{{project-name}}"
 readme = "README.md"
 categories = ["cryptography", "cryptography::cryptocurrencies"]
 keywords = ["tangle", "blueprint", "avs"]
-rust-version = "1.81"
 
-[dependencies]
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget", features = ["tangle", "macros"] }
+[workspace.dependencies]
+{{project-name}}-blueprint-lib = { path = "{{project-name}}-lib" }
 
-[build-dependencies]
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget", features = ["build"] }
-
-[dev-dependencies]
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget", features = ["testing", "tangle"] }
+blueprint-sdk = { git = "https://github.com/tangle-network/blueprint.git", default-features = false }
+tokio = { version = "1.43.0", default-features = false }
 color-eyre = "0.6.3"
-
-[lib]
-path = "src/lib.rs"
-
-[[bin]]
-name = "{{project-name}}"
-path = "src/main.rs"
-
-[package.metadata.blueprint]
-manager = { Evm = "HelloBlueprint" }
-
-[[package.metadata.gadget.Native.sources]]
-owner = "{{gh-username}}"
-repo = "{{project-name}}"
-tag = "0.1.0"
-binaries = [
-    { arch = "Amd64", os = "Linux", name = "amd64-linux-{{project-name}}-gadget" },
-    { arch = "Arm64", os = "Linux", name = "arm64-linux-{{project-name}}-gadget" },
-]
+tower = { version = "0.5.2", default-features = false }
+tracing-subscriber = { version = "0.3.19", features = ["env-filter"] }
+tracing = "0.1.41"

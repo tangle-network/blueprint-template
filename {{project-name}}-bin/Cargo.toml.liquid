@@ -24,12 +24,12 @@ tower.workspace = true
 {{project-name}}-blueprint-lib.workspace = true
 blueprint-sdk = { workspace = true, features = ["macros", "build"] }
 
-# TODO: Not yet supported by blueprint-manager: https://github.com/tangle-network/blueprint/issues/730
-#[[package.metadata.gadget.Native.sources]]
-#owner = "{{gh-username}}"
-#repo = "{{project-name}}"
-#tag = "0.1.0"
-#binaries = [
-#    { arch = "Amd64", os = "Linux", name = "amd64-linux-{{project-name}}-gadget" },
-#    { arch = "Arm64", os = "Linux", name = "arm64-linux-{{project-name}}-gadget" },
-#]
+[package.metadata.blueprint]
+sources = [
+    {% if release-ci -%}
+    { type = "Native", owner = "{{gh-username}}", repo = "{{project-name}}", tag = "0.1.0", binaries = [
+        { arch = "Amd64", os = "Linux", name = "amd64-linux-{{project-name}}-gadget" },
+        { arch = "Arm64", os = "Linux", name = "arm64-linux-{{project-name}}-gadget" }
+    ] },
+    {%- endif %}
+]

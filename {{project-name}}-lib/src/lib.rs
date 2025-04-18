@@ -53,7 +53,7 @@ mod tests {
     use blueprint_sdk::{JobResult, IntoJobResult, tangle_subxt};
     use tangle_subxt::tangle_testnet_runtime::api::runtime_types::tangle_primitives::services::field::Field;
     use tangle_subxt::subxt_core::utils::AccountId32;
-    use blueprint_sdk::serde::new_bounded_string;
+    use blueprint_sdk::tangle::serde::new_bounded_string;
     use tangle_subxt::parity_scale_codec::Decode;
 
     #[tokio::test]

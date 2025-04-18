@@ -17,9 +17,9 @@ keywords = ["tangle", "blueprint", "avs"]
 [workspace.dependencies]
 {{project-name}}-blueprint-lib = { path = "{{project-name}}-lib" }
 
-blueprint-sdk = { git = "https://github.com/tangle-network/blueprint.git", default-features = false }
-tokio = { version = "1.43.0", default-features = false }
-color-eyre = "0.6.3"
-tower = { version = "0.5.2", default-features = false }
-tracing-subscriber = { version = "0.3.19", features = ["env-filter"] }
-tracing = "0.1.41"
+blueprint-sdk = { version = "0.1.0-alpha.6", default-features = false }
+tokio = { version = "1", default-features = false }
+color-eyre = "0.6"
+tower = { version = "0.5", default-features = false }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tracing = "0.1"

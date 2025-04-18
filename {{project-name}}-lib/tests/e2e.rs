@@ -1,10 +1,9 @@
 use blueprint_sdk::Job;
 use blueprint_sdk::tangle::layers::TangleLayer;
 use blueprint_sdk::testing::tempfile;
-use blueprint_sdk::testing::utils::harness::TestHarness;
 use blueprint_sdk::testing::utils::setup_log;
 use blueprint_sdk::testing::utils::tangle::TangleTestHarness;
-use blueprint_sdk::testing::utils::tangle::blueprint_serde::to_field;
+use blueprint_sdk::tangle::serde::to_field;
 use {{project-name | snake_case}}_blueprint_lib::{MyContext, say_hello};
 
 // The number of nodes to spawn in the test
@@ -17,7 +16,7 @@ async fn test_blueprint() -> color_eyre::Result<()> {
     // Initialize test harness (node, keys, deployment)
     let temp_dir = tempfile::TempDir::new()?;
     let context = MyContext::new();
-    let harness = TangleTestHarness::setup(temp_dir, context).await?;
+    let harness = TangleTestHarness::setup(temp_dir).await?;
 
     // Setup service with `N` nodes
     let (mut test_env, service_id, _) = harness.setup_services::<N>(false).await?;
@@ -27,7 +26,7 @@ async fn test_blueprint() -> color_eyre::Result<()> {
     test_env.add_job(say_hello.layer(TangleLayer)).await;
 
     // Start the test environment. It is now ready to receive job calls.
-    test_env.start().await?;
+    test_env.start(context).await?;
 
     // Submit the job call
     let job_inputs = vec![to_field(Some("Alice")).unwrap()];

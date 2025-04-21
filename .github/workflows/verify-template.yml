@@ -25,11 +25,12 @@ jobs:
             --define project-description="An example blueprint"
             --define project-homepage="https://tangle.tools"
             --define flakes=true
-            --define docker=true
+            --define container=true
             --define base-image="rustlang/rust:nightly"
+            --define container-registry="docker.io"
             --define ci=true
             --define rust-ci=true
-            --define release-ci=true
+            --define release-ci=false
       - uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable

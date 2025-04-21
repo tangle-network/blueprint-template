@@ -33,15 +33,20 @@ if !check_bool("flakes") {
     file::delete("./.envrc");
 }
 
-if !variable::is_set("docker") {
-    let docker = variable::prompt("Do you want to generate a Dockerfile for your gadget?", true);
-    variable::set("docker", docker);
+if !variable::is_set("container") {
+    let container = variable::prompt("Do you want to deploy your blueprint as a container?", true);
+    variable::set("container", container);
 }
 
-if check_bool("docker") {
+if check_bool("container") {
     if !variable::is_set("base-image") {
         let base_image = variable::prompt("What base image should be used?", "rustlang/rust:nightly");
         variable::set("base-image", base_image);
+    }
+
+    if !variable::is_set("container-registry") {
+        let registry = variable::prompt("What registry will you be deploying to?", "docker.io");
+        variable::set("container-registry", registry);
     }
 } else {
     file::delete("./Dockerfile");
@@ -70,6 +75,10 @@ if !check_bool("rust-ci") {
 
 if !check_bool("release-ci") {
     file::delete("./.github/workflows/release.yml");
+}
+
+if variable::is_set("container-registry") || check_bool("release-ci") {
+    print("\x1b[1m(\x1b[31m!!!\x1b[39m) A native and/or container source has been configured. Be sure to check Cargo.toml to ensure they are correct.")
 }
 
 file::delete("./hooks");

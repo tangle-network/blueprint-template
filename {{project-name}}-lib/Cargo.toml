@@ -19,7 +19,3 @@ tokio = { workspace = true, features = ["sync"] }
 blueprint-sdk = { workspace = true, features = ["testing", "tangle"] }
 tokio = { workspace = true, features = ["macros"] }
 color-eyre = { workspace = true }
-
-[package.metadata.blueprint]
-manager = { Evm = "ExperimentalBlueprint" }
-master_revision = "Latest"

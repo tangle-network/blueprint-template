@@ -24,7 +24,7 @@ fn main() {
     // The `blueprint!` macro generates the info necessary for the `blueprint.json`.
     // See its docs for all available metadata fields.
     let blueprint = blueprint! {
-        name: "experiment",
+        name: "{{project-name}}",
         master_manager_revision: "Latest",
         manager: { Evm = "HelloBlueprint" },
         jobs: [say_hello]

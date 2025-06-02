@@ -23,12 +23,12 @@ async fn main() -> Result<(), blueprint_sdk::Error> {
     let env = BlueprintEnvironment::load()?;
     let sr25519_signer = env.keystore().first_local::<SpSr25519>()?;
     let sr25519_pair = env.keystore().get_secret::<SpSr25519>(&sr25519_signer)?;
-    let st25519_signer = TanglePairSigner::new(sr25519_pair.0);
+    let sr25519_signer = TanglePairSigner::new(sr25519_pair.0);
 
     let tangle_client = env.tangle_client().await?;
     let tangle_producer =
         TangleProducer::finalized_blocks(tangle_client.rpc_client.clone()).await?;
-    let tangle_consumer = TangleConsumer::new(tangle_client.rpc_client.clone(), st25519_signer);
+    let tangle_consumer = TangleConsumer::new(tangle_client.rpc_client.clone(), sr25519_signer);
 
     let tangle_config = TangleConfig::default();
 

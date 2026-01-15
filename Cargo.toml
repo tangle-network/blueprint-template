@@ -6,7 +6,7 @@ members = [
 ]
 
 [workspace.package]
-authors = ["{{authors}}"]
+authors = ["{{project-authors}}"]
 edition = "2024"
 description = "{{project-description}}"
 license = "MIT OR Apache-2.0"

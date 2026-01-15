@@ -6,7 +6,7 @@ type = "string"
 prompt = "Project description?"
 default = "A Tangle EVM blueprint"
 
-[placeholders.authors]
+[placeholders.project-authors]
 type = "string"
 prompt = "Author name?"
 default = "Tangle Network"

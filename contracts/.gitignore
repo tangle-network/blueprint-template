@@ -2,6 +2,9 @@
 cache/
 out/
 
+# Dependencies (installed by soldeer)
+lib/
+
 # Ignores development broadcast logs
 !/broadcast
 /broadcast/*/31337/

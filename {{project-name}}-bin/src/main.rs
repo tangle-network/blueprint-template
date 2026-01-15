@@ -1,98 +1,66 @@
-use blueprint_sdk::Job;
-use blueprint_sdk::Router;
-use blueprint_sdk::contexts::tangle::TangleClientContext;
-use blueprint_sdk::crypto::sp_core::SpSr25519;
-use blueprint_sdk::crypto::tangle_pair_signer::TanglePairSigner;
-use blueprint_sdk::keystore::backends::Backend;
+//! Blueprint runner for {{project-name}}.
+
+use {{crate_name}}_lib::router;
+use blueprint_sdk::contexts::tangle_evm::TangleEvmClientContext;
 use blueprint_sdk::runner::BlueprintRunner;
 use blueprint_sdk::runner::config::BlueprintEnvironment;
-use blueprint_sdk::runner::tangle::config::TangleConfig;
-use blueprint_sdk::tangle::consumer::TangleConsumer;
-use blueprint_sdk::tangle::filters::MatchesServiceId;
-use blueprint_sdk::tangle::layers::TangleLayer;
-use blueprint_sdk::tangle::producer::TangleProducer;
-use {{project-name | snake_case}}_blueprint_lib::{MyContext, SAY_HELLO_JOB_ID, say_hello};
-use tower::filter::FilterLayer;
-use tracing::error;
-use tracing::level_filters::LevelFilter;
+use blueprint_sdk::runner::tangle_evm::config::TangleEvmConfig;
+use blueprint_sdk::tangle_evm::{TangleEvmConsumer, TangleEvmProducer};
+use blueprint_sdk::{error, info};
 
 #[tokio::main]
 async fn main() -> Result<(), blueprint_sdk::Error> {
     setup_log();
 
+    // Load configuration from environment variables
     let env = BlueprintEnvironment::load()?;
-    let sr25519_signer = env.keystore().first_local::<SpSr25519>()?;
-    let sr25519_pair = env.keystore().get_secret::<SpSr25519>(&sr25519_signer)?;
-    let sr25519_signer = TanglePairSigner::new(sr25519_pair.0);
 
-    let tangle_client = env.tangle_client().await?;
-    let tangle_producer =
-        TangleProducer::finalized_blocks(tangle_client.rpc_client.clone()).await?;
-    let tangle_consumer = TangleConsumer::new(tangle_client.rpc_client.clone(), sr25519_signer);
+    // Connect to the Tangle EVM network
+    let tangle_client = env
+        .tangle_evm_client()
+        .await
+        .map_err(|e| blueprint_sdk::Error::Other(e.to_string()))?;
 
-    let tangle_config = TangleConfig::default();
+    // Get service ID from protocol settings
+    let service_id = env
+        .protocol_settings
+        .tangle_evm()
+        .map_err(|e| blueprint_sdk::Error::Other(e.to_string()))?
+        .service_id
+        .ok_or_else(|| blueprint_sdk::Error::Other("SERVICE_ID missing".into()))?;
 
-    let service_id = env.protocol_settings.tangle()?.service_id.unwrap();
+    info!("Starting {{project-name}} blueprint for service {service_id}");
+
+    // Create producer (listens for JobSubmitted events) and consumer (submits results)
+    let tangle_producer = TangleEvmProducer::new(tangle_client.clone(), service_id);
+    let tangle_consumer = TangleEvmConsumer::new(tangle_client);
+    let tangle_config = TangleEvmConfig::default();
+
+    // Build and run the blueprint
     let result = BlueprintRunner::builder(tangle_config, env)
-        .router(
-            // A router
-            //
-            // Each "route" is a job ID and the job function. We can also support arbitrary `Service`s from `tower`,
-            // which may make it easier for people to port over existing services to a blueprint.
-            Router::new()
-                // The route defined here has a `TangleLayer`, which adds metadata to the
-                // produced `JobResult`s, making it visible to a `TangleConsumer`.
-                .route(SAY_HELLO_JOB_ID, say_hello.layer(TangleLayer))
-                // Add the `FilterLayer` to filter out job calls that don't match the service ID
-                //
-                // This layer is global to the router, and is applied to every job call.
-                .layer(FilterLayer::new(MatchesServiceId(service_id)))
-                // We can add a context to the router, which will be passed to all job functions
-                // that have the `Context` extractor.
-                //
-                // A context can be used for global state between job calls, such as a database.
-                //
-                // It is important to note that the context is **cloned** for each job call, so
-                // the context must be cheaply cloneable.
-                .with_context(MyContext::new()),
-        )
-        // Add potentially many producers
-        //
-        // A producer is simply a `Stream` that outputs `JobCall`s, which are passed down to the intended
-        // job functions.
+        .router(router())
         .producer(tangle_producer)
-        // Add potentially many consumers
-        //
-        // A consumer is simply a `Sink` that consumes `JobResult`s, which are the output of the job functions.
-        // Every result will be passed to every consumer. It is the responsibility of the consumer
-        // to determine whether or not to process a result.
         .consumer(tangle_consumer)
-        // Custom shutdown handlers
-        //
-        // Now users can specify what to do when an error occurs and the runner is shutting down.
-        // That can be cleanup logic, finalizing database transactions, etc.
-        .with_shutdown_handler(async { println!("Shutting down!") })
+        .with_shutdown_handler(async {
+            info!("Shutting down {{project-name}} blueprint");
+        })
         .run()
         .await;
 
     if let Err(e) = result {
-        error!("Runner failed! {e:?}");
+        error!("Runner failed: {e:?}");
     }
 
     Ok(())
 }
 
-pub fn setup_log() {
-    use tracing_subscriber::util::SubscriberInitExt;
-
-    let _ = tracing_subscriber::fmt::SubscriberBuilder::default()
-        .without_time()
-        .with_span_events(tracing_subscriber::fmt::format::FmtSpan::NONE)
-        .with_env_filter(
-            tracing_subscriber::EnvFilter::builder()
-                .with_default_directive(LevelFilter::INFO.into())
-                .from_env_lossy(),
-        )
-        .finish()
-        .try_init();
+fn setup_log() {
+    use tracing_subscriber::prelude::*;
+    use tracing_subscriber::{EnvFilter, fmt};
+    if tracing_subscriber::registry()
+        .with(fmt::layer())
+        .with(EnvFilter::from_default_env())
+        .try_init()
+        .is_err()
+    {}
 }

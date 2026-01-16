@@ -1,7 +1,7 @@
 //! {{project-description}}
 
-use alloy_primitives::Address;
-use alloy_sol_types::sol;
+use blueprint_sdk::alloy::primitives::Address;
+use blueprint_sdk::alloy::sol;
 use blueprint_sdk::Job;
 use blueprint_sdk::Router;
 use blueprint_sdk::macros::debug_job;

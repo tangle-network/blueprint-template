@@ -7,8 +7,6 @@ description.workspace = true
 license.workspace = true
 
 [dependencies]
-alloy-primitives = "1"
-alloy-sol-types = "1"
 blueprint-sdk = { git = "https://github.com/tangle-network/blueprint", branch = "v2", default-features = false, features = ["std", "tracing", "macros", "tangle-evm"] }
 tokio = { version = "1", default-features = false, features = ["sync"] }
 

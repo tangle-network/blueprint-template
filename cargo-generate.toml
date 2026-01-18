@@ -1,5 +1,7 @@
 [template]
 cargo_generate_version = ">=0.18.0"
+# Ignore files with ${{ }} syntax that conflicts with cargo-generate
+ignore = [".github/workflows/release.yml", ".github/workflows/verify-template.yml"]
 
 [placeholders.project-description]
 type = "string"

@@ -25,7 +25,7 @@ jobs:
             --define project-description="An example blueprint"
       - uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: stable
+          toolchain: "1.88"
       - name: Copy generated project
         run: cp -r $PROJECT_NAME ${{ runner.temp }}/
       - name: Forge build

@@ -23,6 +23,8 @@ jobs:
           arguments: >
             --define project-authors="tangle-network"
             --define project-description="An example blueprint"
+      - name: Install protoc
+        run: sudo apt-get install -y protobuf-compiler
       - uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: "1.88"

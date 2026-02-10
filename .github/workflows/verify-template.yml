@@ -26,12 +26,14 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable
+      - name: Copy generated project
+        run: cp -r $PROJECT_NAME ${{ runner.temp }}/
       - name: Forge build
         run: |
-          cd $PROJECT_NAME
+          cd ${{ runner.temp }}/$PROJECT_NAME
           forge soldeer update -d
           forge build
       - name: Cargo check
         run: |
-          cd $PROJECT_NAME
+          cd ${{ runner.temp }}/$PROJECT_NAME
           cargo check

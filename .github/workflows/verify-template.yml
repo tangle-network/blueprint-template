@@ -17,8 +17,6 @@ jobs:
       - uses: foundry-rs/foundry-toolchain@v1
         with:
           version: nightly
-      - name: Install Solidity Dependencies
-        run: forge soldeer update -d
       - uses: JohnPeel/cargo-generate-action@main
         with:
           name: ${{ env.PROJECT_NAME }}
@@ -30,10 +28,10 @@ jobs:
           toolchain: stable
       - name: Forge build
         run: |
-          cd ${{ runner.temp }}/$PROJECT_NAME
+          cd $PROJECT_NAME
           forge soldeer update -d
           forge build
       - name: Cargo check
         run: |
-          cd ${{ runner.temp }}/$PROJECT_NAME
+          cd $PROJECT_NAME
           cargo check

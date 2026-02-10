@@ -1,14 +1,14 @@
 [template]
-cargo_generate_version = ">=0.17.4"
-ignore = [".git", "blueprint.json", "blueprint.lock", ".github/workflows/verify-template.yml"]
-exclude = [".github/workflows/release.yml"]
+cargo_generate_version = ">=0.18.0"
+# Ignore files with ${{ }} syntax that conflicts with cargo-generate
+ignore = [".github/workflows/release.yml", ".github/workflows/verify-template.yml"]
 
-[placeholders.gh-username]
+[placeholders.project-description]
 type = "string"
-prompt = "Your GitHub username (or organization)"
-# The username cannot end with a hyphen, too, but
-# this requirement is not captured by the regex at the moment.
-regex = "^[A-Za-z0-9][A-Za-z0-9-]{0,38}$"
+prompt = "Project description?"
+default = "A Tangle EVM blueprint"
 
-[hooks]
-pre = ["hooks/pre.rhai"]
+[placeholders.project-authors]
+type = "string"
+prompt = "Author name?"
+default = "Tangle Network"

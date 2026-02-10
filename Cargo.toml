@@ -1,0 +1,12 @@
+[workspace]
+resolver = "3"
+members = [
+    "{{project-name}}-lib",
+    "{{project-name}}-bin",
+]
+
+[workspace.package]
+authors = ["{{project-authors}}"]
+edition = "2024"
+description = "{{project-description}}"
+license = "MIT OR Apache-2.0"

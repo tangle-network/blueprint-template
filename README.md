@@ -1,9 +1,9 @@
-# <h1 align="center">Hello World Tangle Blueprint 🌐</h1>
+# Hello World Tangle Blueprint
 
-## 📚 Overview
+## Overview
 
-This Tangle Blueprint provides a simple Hello World job.
-Blueprints are specifications for <abbr title="Actively Validated Services">AVS</abbr>s on the Tangle Network. An AVS is
+This Tangle Blueprint provides a simple Hello World job using the Tangle EVM architecture.
+Blueprints are specifications for AVS (Actively Validated Services) on the Tangle Network. An AVS is
 an off-chain service that runs arbitrary computations for a user-specified period of time.
 
 Blueprints provide a useful abstraction, allowing developers to create reusable service infrastructures as if they were
@@ -12,31 +12,27 @@ creations, benefiting proportionally to their Blueprint's usage.
 
 For more details, please refer to the [project documentation](https://docs.tangle.tools/developers/blueprints/introduction).
 
-## 🚀 Features
+## Features
 
-- Custom greeting messages
-- Default "Hello World!" messages
-- ...
+- Tangle EVM-based blueprint architecture
+- ABI-compatible request/response types via `alloy-sol-types`
+- Custom greeting messages with caller address tracking
 
-## 📋 Prerequisites
+## Prerequisites
 
 Before you can run this project, you will need to have the following software installed on your machine:
 
-- [Rust](https://www.rust-lang.org/tools/install)
-- [Forge](https://getfoundry.sh)
+- [Rust 1.86+](https://www.rust-lang.org/tools/install)
+- [Forge](https://getfoundry.sh) (for smart contract development)
 
 You will also need to install [cargo-tangle](https://crates.io/crates/cargo-tangle), our CLI tool for creating and
 deploying Tangle Blueprints:
 
-To install the Tangle CLI, run the following command:
-
-> Supported on Linux, MacOS, and Windows (WSL2)
-
 ```bash
-cargo install cargo-tangle --git https://github.com/tangle-network/blueprint
+cargo install cargo-tangle --git https://github.com/tangle-network/blueprint --branch v2
 ```
 
-## ⭐ Getting Started
+## Getting Started
 
 Once `cargo-tangle` is installed, you can create a new project with the following command:
 
@@ -46,23 +42,39 @@ cargo tangle blueprint create --name <project-name>
 
 and follow the instructions to create a new project.
 
-## 🛠️ Development
+## Project Structure
 
-Once you have created a new project, you can run the following command to start the project:
+```
+{{project-name}}/
+  Cargo.toml              # Workspace configuration
+  {{project-name}}-lib/   # Blueprint library with job definitions
+    src/lib.rs            # Job implementation and router
+  {{project-name}}-bin/   # Blueprint runner binary
+    src/main.rs           # Main entry point
+  contracts/              # Solidity smart contracts
+```
+
+## Development
+
+Build the project:
 
 ```sh
 cargo build
 ```
 
-to build the project, and
+Run tests:
 
 ```sh
-cargo tangle blueprint deploy
+cargo test
 ```
 
-to deploy the blueprint to the Tangle network.
+Deploy the blueprint to the Tangle network:
 
-## 📜 License
+```sh
+cargo tangle blueprint deploy tangle --network devnet
+```
+
+## License
 
 Licensed under either of
 
@@ -73,7 +85,7 @@ Licensed under either of
 
 at your option.
 
-## 📬 Feedback and Contributions
+## Feedback and Contributions
 
 We welcome feedback and contributions to improve this blueprint.
 Please open an issue or submit a pull request on our GitHub repository.

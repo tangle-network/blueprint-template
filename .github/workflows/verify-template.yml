@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   pull_request:
   push:
-    branches: [ 'main' ]
+    branches: [ 'main', 'v2' ]
     paths-ignore:
       - "**.md"
 
@@ -11,30 +11,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PROJECT_NAME: blueprint-template
+      PROJECT_NAME: hello-blueprint
     steps:
       - uses: actions/checkout@v4
       - uses: foundry-rs/foundry-toolchain@v1
         with:
           version: nightly
+      - name: Install Solidity Dependencies
+        run: forge soldeer update -d
       - uses: JohnPeel/cargo-generate-action@main
         with:
           name: ${{ env.PROJECT_NAME }}
           arguments: >
-            --define gh-username="tangle-network"
+            --define project-authors="tangle-network"
             --define project-description="An example blueprint"
-            --define project-homepage="https://tangle.tools"
-            --define flakes=true
-            --define container=true
-            --define base-image="rustlang/rust:nightly"
-            --define container-registry="docker.io"
-            --define ci=true
-            --define rust-ci=true
-            --define release-ci=false
       - uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable
-      - run: |
-          cp -r $PROJECT_NAME ${{ runner.temp }}/
+      - name: Forge build
+        run: |
+          cd ${{ runner.temp }}/$PROJECT_NAME
+          forge soldeer update -d
+          forge build
+      - name: Cargo check
+        run: |
           cd ${{ runner.temp }}/$PROJECT_NAME
           cargo check

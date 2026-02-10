@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSE
-pragma solidity >=0.8.13;
+pragma solidity >=0.8.26;
 
 import "tnt-core/BlueprintServiceManagerBase.sol";
 
@@ -12,30 +12,40 @@ contract HelloBlueprint is BlueprintServiceManagerBase {
     /**
      * @dev Hook for service operator registration. Called when a service operator
      * attempts to register with the blueprint.
-     * @param operator The operator's details.
+     * @param operator The operator's address.
      * @param registrationInputs Inputs required for registration in bytes format.
      */
     function onRegister(
-        ServiceOperators.OperatorPreferences calldata operator,
+        address operator,
         bytes calldata registrationInputs
     )
     external
     payable
     virtual
     override
-    onlyFromMaster
+    onlyFromTangle
     {
         // Do something with the operator's details
     }
 
     /**
-     *  @dev Hook for service instance requests. Called when a user requests a service
-     *  instance from the blueprint but this does not mean the service is initiated yet.
-     *  To get notified when the service is initiated, implement the `onServiceInitialized` hook.
-     *
-     *  @param params The parameters for the service request.
+     * @dev Hook for service instance requests. Called when a user requests a service
+     * instance from the blueprint.
      */
-    function onRequest(ServiceOperators.RequestParams calldata params) external payable virtual override onlyFromMaster
+    function onRequest(
+        uint64 serviceId,
+        address requester,
+        address[] calldata operators,
+        bytes calldata requestInputs,
+        uint64 ttl,
+        address paymentAsset,
+        uint256 amount
+    )
+    external
+    payable
+    virtual
+    override
+    onlyFromTangle
     {
         // Do something with the service request
     }
@@ -46,7 +56,7 @@ contract HelloBlueprint is BlueprintServiceManagerBase {
      * @param serviceId The ID of the service related to the job.
      * @param job The job identifier.
      * @param jobCallId The unique ID for the job call.
-     * @param operator The operator sending the result in bytes format.
+     * @param operator The operator address sending the result.
      * @param inputs Inputs used for the job execution in bytes format.
      * @param outputs Outputs resulting from the job execution in bytes format.
      */
@@ -54,7 +64,7 @@ contract HelloBlueprint is BlueprintServiceManagerBase {
         uint64 serviceId,
         uint8 job,
         uint64 jobCallId,
-        ServiceOperators.OperatorPreferences calldata operator,
+        address operator,
         bytes calldata inputs,
         bytes calldata outputs
     )
@@ -62,17 +72,8 @@ contract HelloBlueprint is BlueprintServiceManagerBase {
     payable
     virtual
     override
-    onlyFromMaster
+    onlyFromTangle
     {
         // Do something with the job call result
-    }
-
-    /**
-     * @dev Converts a public key to an operator address.
-     * @param publicKey The public key to convert.
-     * @return operator address The operator address.
-     */
-    function operatorAddressFromPublicKey(bytes calldata publicKey) internal pure returns (address operator) {
-        return address(uint160(uint256(keccak256(publicKey))));
     }
 }

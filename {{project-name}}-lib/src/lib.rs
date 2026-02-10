@@ -2,11 +2,8 @@
 
 use blueprint_sdk::alloy::primitives::Address;
 use blueprint_sdk::alloy::sol;
-use blueprint_sdk::Job;
 use blueprint_sdk::Router;
-use blueprint_sdk::macros::debug_job;
-use blueprint_sdk::tangle_evm::TangleEvmLayer;
-use blueprint_sdk::tangle_evm::extract::{Caller, TangleEvmArg, TangleEvmResult};
+use blueprint_sdk::tangle::extract::{Caller, TangleArg, TangleResult};
 
 /// Job ID for the hello job.
 pub const HELLO_JOB_ID: u8 = 0;
@@ -26,15 +23,14 @@ sol! {
 }
 
 /// A simple job that greets the caller.
-#[debug_job]
 pub async fn hello(
     Caller(caller): Caller,
-    TangleEvmArg(request): TangleEvmArg<HelloRequest>,
-) -> TangleEvmResult<HelloResponse> {
+    TangleArg(request): TangleArg<HelloRequest>,
+) -> TangleResult<HelloResponse> {
     let caller_address = Address::from_slice(&caller);
     let message = format!("Hello, {}!", request.name);
 
-    TangleEvmResult(HelloResponse {
+    TangleResult(HelloResponse {
         message,
         operator: format!("{caller_address:#x}"),
     })
@@ -43,7 +39,7 @@ pub async fn hello(
 /// Router that maps job IDs to handlers.
 #[must_use]
 pub fn router() -> Router {
-    Router::new().route(HELLO_JOB_ID, hello.layer(TangleEvmLayer))
+    Router::new().route(HELLO_JOB_ID, hello)
 }
 
 #[cfg(test)]
@@ -57,7 +53,7 @@ mod tests {
             name: "World".to_string(),
         };
 
-        let result = hello(Caller(caller), TangleEvmArg(request)).await;
+        let result = hello(Caller(caller), TangleArg(request)).await;
         assert!(result.0.message.contains("Hello, World!"));
     }
 }

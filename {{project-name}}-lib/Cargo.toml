@@ -7,10 +7,10 @@ description.workspace = true
 license.workspace = true
 
 [dependencies]
-blueprint-sdk = { git = "https://github.com/tangle-network/blueprint", branch = "main", default-features = false, features = ["std", "tracing", "macros", "tangle"] }
+blueprint-sdk = { version = "0.1.0-alpha.22", default-features = false, features = ["std", "tracing", "macros", "tangle"] }
 tokio = { version = "1", default-features = false, features = ["sync"] }
 
 [dev-dependencies]
 anyhow = "1"
-blueprint-anvil-testing-utils = { git = "https://github.com/tangle-network/blueprint", branch = "main" }
+blueprint-anvil-testing-utils = "0.1.0-alpha.21"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }

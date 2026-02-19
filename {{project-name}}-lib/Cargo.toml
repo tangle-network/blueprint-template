@@ -8,6 +8,7 @@ license.workspace = true
 
 [dependencies]
 blueprint-sdk = { version = "0.1.0-alpha.22", default-features = false, features = ["std", "tracing", "macros", "tangle"] }
+serde = { version = "1", features = ["derive"] }
 tokio = { version = "1", default-features = false, features = ["sync"] }
 
 [dev-dependencies]

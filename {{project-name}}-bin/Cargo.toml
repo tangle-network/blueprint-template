@@ -12,6 +12,6 @@ path = "src/main.rs"
 
 [dependencies]
 {{project-name}}-lib = { path = "../{{project-name}}-lib" }
-blueprint-sdk = { git = "https://github.com/tangle-network/blueprint", branch = "main", default-features = false, features = ["std", "tangle"] }
+blueprint-sdk = { version = "0.1.0-alpha.22", default-features = false, features = ["std", "tangle"] }
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }

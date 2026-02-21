@@ -1,6 +1,6 @@
 [[dependencies]]
 name = "tnt-core"
-version = "0.10.2"
-url = "https://soldeer-revisions.s3.amazonaws.com/tnt-core/0_10_2_19-02-2026_20:23:27_tnt-core.zip"
-checksum = "6942d94960155b77f0eeb67d8f0b2e225911152600a8e15898ade293d008d883"
-integrity = "4d1cf1b31383b4293c033bb343dae93eb6490bfb8a6be8d306672e17e11a8d88"
+version = "0.10.3"
+url = "https://soldeer-revisions.s3.amazonaws.com/tnt-core/0_10_3_21-02-2026_18:36:47_tnt-core.zip"
+checksum = "220f7aec5cae6ee8e189ce1b911de746193cdcc31f14644e02b59548d878aad1"
+integrity = "756c4d3a9a3af06c44c37b9c37573a8907ed29b7a3756743c03fd17ef57ad9ea"

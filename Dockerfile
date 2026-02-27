@@ -34,7 +34,7 @@ LABEL org.opencontainers.image.description="{{project-description}}"
 LABEL org.opencontainers.image.source="https://github.com/{{gh-username}}/{{project-name}}"
 LABEL org.opencontainers.image.licenses="MIT OR Apache-2.0"
 
-ENV RUST_LOG="gadget=info"
+ENV RUST_LOG="info"
 ENV BIND_ADDR="0.0.0.0"
 ENV BIND_PORT=9632
 ENV BLUEPRINT_ID=0

@@ -7,11 +7,11 @@ description.workspace = true
 license.workspace = true
 
 [dependencies]
-blueprint-sdk = { version = "0.1.0-alpha.22", default-features = false, features = ["std", "tracing", "macros", "tangle"] }
+blueprint-sdk = { version = "0.2.0-alpha.1", default-features = false, features = ["std", "tracing", "macros", "tangle"] }
 serde = { version = "1", features = ["derive"] }
 tokio = { version = "1", default-features = false, features = ["sync"] }
 
 [dev-dependencies]
 anyhow = "1"
-blueprint-anvil-testing-utils = "0.1.0-alpha.21"
+blueprint-anvil-testing-utils = "0.2.0-alpha.1"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }

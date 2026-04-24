@@ -54,6 +54,8 @@ and follow the instructions to create a new project.
 ```
 {{project-name}}/
   Cargo.toml              # Workspace configuration
+  metadata/               # Offchain blueprint metadata published to IPFS/HTTPS
+    blueprint-metadata.json
   {{project-name}}-lib/   # Blueprint library with job definitions
     src/lib.rs            # Job implementation and router
   {{project-name}}-bin/   # Blueprint runner binary
@@ -80,6 +82,42 @@ Deploy the blueprint to the Tangle network:
 ```sh
 cargo tangle blueprint deploy tangle --network devnet
 ```
+
+## Hosted App Metadata
+
+The onchain registry only stores a `metadata_uri` pointer. The rich blueprint
+JSON itself lives offchain, usually on IPFS or a versioned HTTPS endpoint.
+
+This template includes a starter file at
+`metadata/blueprint-metadata.json`. It contains:
+
+- top-level blueprint metadata such as `name`, `description`, and `author`
+- a `blueprintUi` contract used by Tangle Cloud's shared host
+- starter tier-2 modules for cards, schema-driven actions, resource views,
+  theme tokens, and approved host modules
+
+Recommended workflow:
+
+1. Edit `metadata/blueprint-metadata.json` so the content matches your
+   blueprint's public UX contract.
+2. Publish the JSON to IPFS for immutable production hosting, or to HTTPS for
+   local development and previews.
+3. Set the resulting URI as `metadata_uri` in your deploy definition.
+4. Register or update the blueprint onchain with that URI.
+
+For hardened tier-2 hosting, add an `integrity` attestation before publishing:
+
+- compute a payload hash over the metadata JSON without the `integrity` field
+- bind that hash to `blueprintId`, `owner`, and `metadata_uri`
+- sign the attestation with the onchain blueprint owner's EVM key
+- publish the signature alongside the metadata JSON
+
+If attestation verification fails, Tangle Cloud falls back to the default
+protocol host instead of rendering advanced tier-2 features.
+
+Tier 2 hosted apps are declarative on purpose. The shared host will parse and
+render configuration from `blueprintUi`, but it does not execute arbitrary
+third-party frontend code inside Tangle Cloud.
 
 ## Key Concepts
 

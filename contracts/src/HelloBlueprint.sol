@@ -15,15 +15,12 @@ contract HelloBlueprint is BlueprintServiceManagerBase {
      * @param operator The operator's address.
      * @param registrationInputs Inputs required for registration in bytes format.
      */
-    function onRegister(
-        address operator,
-        bytes calldata registrationInputs
-    )
-    external
-    payable
-    virtual
-    override
-    onlyFromTangle
+    function onRegister(address operator, bytes calldata registrationInputs)
+        external
+        payable
+        virtual
+        override
+        onlyFromTangle
     {
         // Do something with the operator's details
     }
@@ -40,13 +37,7 @@ contract HelloBlueprint is BlueprintServiceManagerBase {
         uint64 ttl,
         address paymentAsset,
         uint256 amount
-    )
-    external
-    payable
-    virtual
-    override
-    onlyFromTangle
-    {
+    ) external payable virtual override onlyFromTangle {
         // Do something with the service request
     }
 
@@ -67,13 +58,7 @@ contract HelloBlueprint is BlueprintServiceManagerBase {
         address operator,
         bytes calldata inputs,
         bytes calldata outputs
-    )
-    external
-    payable
-    virtual
-    override
-    onlyFromTangle
-    {
+    ) external payable virtual override onlyFromTangle {
         // Do something with the job call result
     }
 }

@@ -7,8 +7,8 @@ description.workspace = true
 license.workspace = true
 
 [dependencies]
+alloy-sol-types = "1.3"
 blueprint-sdk = { version = "0.2.0-alpha.1", default-features = false, features = ["std", "tracing", "macros", "tangle"] }
-serde = { version = "1", features = ["derive"] }
 tokio = { version = "1", default-features = false, features = ["sync"] }
 
 [dev-dependencies]

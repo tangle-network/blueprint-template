@@ -1,0 +1,124 @@
+{
+  "name": "{{project-name}}",
+  "description": "{{project-description}}",
+  "author": "{{project-authors}}",
+  "category": "Other",
+  "image": null,
+  "website": null,
+  "codeRepository": null,
+  "docs": null,
+  "integrity": null,
+  "blueprintUi": {
+    "displayName": "{{project-name}}",
+    "description": "{{project-description}}",
+    "requestedSlug": "{{project-name}}",
+    "publisher": {
+      "name": "{{project-authors}}",
+      "verified": false
+    },
+    "resources": {
+      "serviceLabel": "Service",
+      "itemLabel": "Run",
+      "itemRoute": "runs"
+    },
+    "surfaces": {
+      "genericOverview": true,
+      "serviceExplorer": true,
+      "actionsPanel": true,
+      "resources": true,
+      "metrics": true,
+      "permissions": true
+    },
+    "theme": {
+      "badgeLabel": "Hosted on Tangle Cloud",
+      "accentColor": "#0F766E",
+      "secondaryColor": "#0F172A",
+      "icon": "bot"
+    },
+    "overviewCards": [
+      {
+        "id": "operator-health",
+        "kind": "stat",
+        "title": "Operator health",
+        "description": "Shared host card summarizing operator and service activity.",
+        "value": "99.9%",
+        "tone": "success"
+      },
+      {
+        "id": "operator-links",
+        "kind": "links",
+        "title": "Useful links",
+        "links": [
+          {
+            "label": "Docs",
+            "href": "https://docs.tangle.tools/"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "provision-service",
+        "label": "Provision service",
+        "description": "Schema-driven request form rendered inside the shared host.",
+        "target": "service",
+        "submitLabel": "Provision",
+        "fields": [
+          {
+            "key": "service_name",
+            "label": "Service name",
+            "input": "text",
+            "required": true,
+            "placeholder": "atlas-prod"
+          },
+          {
+            "key": "replicas",
+            "label": "Replicas",
+            "input": "number",
+            "required": true,
+            "placeholder": "3"
+          }
+        ]
+      }
+    ],
+    "resourceViews": [
+      {
+        "id": "runs-table",
+        "title": "Run ledger",
+        "kind": "table",
+        "target": "resource",
+        "defaultSort": "updated_at:desc",
+        "columns": [
+          {
+            "key": "status",
+            "label": "Status",
+            "emphasis": true
+          },
+          {
+            "key": "updated_at",
+            "label": "Updated"
+          }
+        ]
+      }
+    ],
+    "modules": [
+      {
+        "module": "metrics-overview",
+        "slot": "overview",
+        "metricKeys": [
+          "success_rate",
+          "latency_p95"
+        ]
+      },
+      {
+        "module": "resource-events",
+        "slot": "resources",
+        "eventKinds": [
+          "queued",
+          "started",
+          "completed"
+        ]
+      }
+    ]
+  }
+}

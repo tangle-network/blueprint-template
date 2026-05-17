@@ -27,7 +27,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y protobuf-compiler
       - uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: "1.88"
+          toolchain: "1.91"
       - name: Copy generated project
         run: cp -r $PROJECT_NAME ${{ runner.temp }}/
       - name: Forge build

@@ -63,6 +63,18 @@ and follow the instructions to create a new project.
   contracts/              # Solidity smart contracts
 ```
 
+## Local template qualification
+
+Automatic branch verification and release planning on pull requests are retired. Merge the current default branch and qualify the rendered project from the exact candidate through the maintained admitted gate:
+
+```bash
+beelink-gate auto https://github.com/tangle-network/blueprint-template.git <full-sha> -- bash -lc 'set -euo pipefail; scratch=$(mktemp -d -t blueprint-template-check.XXXXXX); trap "rm -rf -- \"$scratch\"" EXIT; cargo generate --path "$PWD" --name hello-blueprint --destination "$scratch/hello-blueprint" --define project-authors=tangle-network --define "project-description=An example blueprint"; cd "$scratch/hello-blueprint"; forge soldeer update -d; forge build; cargo check'
+```
+
+The admitted host needs cargo-generate, the repository-owned Rust toolchain, Foundry and protoc. The generated project is outside the template workspace; Solidity dependency preparation and build precede Cargo checking as in the retired verifier. Inspect any resolved dependency-lock changes before accepting a result. This checks generation and compilation, not on-chain execution.
+
+Workflow/documentation-only changes use YAML, actionlint, content/link and exact-diff checks. The existing manual Foundry workflow and every tagged release job are unchanged. The generated project's CI template is separate scaffolder output and remains unchanged. The local check does not publish artifacts or authorize a deployment or transaction.
+
 ## Development
 
 Build the project:

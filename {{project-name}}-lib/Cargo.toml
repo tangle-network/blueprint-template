@@ -8,10 +8,10 @@ license.workspace = true
 
 [dependencies]
 alloy-sol-types = "1.6"
-blueprint-sdk = { version = "=0.2.0-alpha.12", default-features = false, features = ["std", "tracing", "macros", "tangle"] }
+blueprint-sdk = { version = "=0.2.0-alpha.19", default-features = false, features = ["std", "tracing", "macros", "tangle"] }
 tokio = { version = "1", default-features = false, features = ["sync"] }
 
 [dev-dependencies]
 anyhow = "1"
-blueprint-anvil-testing-utils = "=0.2.0-alpha.12"
+blueprint-anvil-testing-utils = "=0.2.0-alpha.22"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
